@@ -1,15 +1,18 @@
 package com.oriontek.clientapi.model.entity;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+@Entity
+@Data
 @Table(name = "addresses")
-public class Address extends BaseEntity {
+public class Address {
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String street;
 
@@ -18,4 +21,11 @@ public class Address extends BaseEntity {
     private String state;
 
     private String postalCode;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDat = LocalDateTime.now();
 }

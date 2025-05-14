@@ -1,6 +1,6 @@
 CREATE TABLE addresses(
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    client_id BIGINT NOT NULL,
+    client_id BIGINT,
     street VARCHAR(150) NOT NULL,
     city VARCHAR(100) NOT NULL,
     state VARCHAR(100),
